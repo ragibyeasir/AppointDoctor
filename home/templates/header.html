@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block tittle %}Home{% endblock tittle %} </title>
+    <link rel="stylesheet" {% block style %}href="/static/header.css"{% endblock style %}>
+    {% block message %}{% endblock message %}
+</head>
+<body>
+    <header>
+        <div class="logo">Appoint Doctor</div>
+        <div class="ad">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+        <nav class="nav-bar">
+            <ul>
+                <li>
+                     <a href="/" {% block home %}{% endblock home %}> Home</a>
+                </li>
+                <li>
+                    {% block userauth  %}<a href="/Doctors" {% block doctor  %}{% endblock doctor %}>See Doctors</a>{% endblock userauth  %}     
+                </li>
+                <li>
+                    <a href="#">About Us</a>
+                </li>
+                <li>
+                    <a href="#" >Contact</a>
+                </li>
+                <li> 
+                    {% block logut %}<a href="/login"  {% block login %}{% endblock login %}>Log In</a>{% endblock logut %}
+                </li>
+            </ul>
+        </nav>
+    
+    </header>
+    <sidebar>
+        <div class="wrapper">
+            <input type="checkbox" id="btn" hidden>
+            <label for="btn" class="menu-btn">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-times"></i>
+            </label>
+            <nav id="sidebar">
+                {% block sidetittle %}
+                <div class="title">
+                    Side Menu 
+               </div>
+                {% endblock sidetittle %}
+
+               <ul class="list-items">
+                  <li><a href="#"><i class="fas fa-home"></i>Home</a></li>
+                  <li><a href="#"><i class="fas fa-sliders-h"></i>Consults</a></li>
+                  <li><a href="#"><i class="fas fa-address-book"></i>Profile</a></li>
+               </ul>
+            </nav>
+         </div>
+    </sidebar>
+    {% block body %}
+
+    {% endblock body %}
+    <script>
+        ad= document.querySelector(".ad");
+        ad.onclick=function(){
+            navBar=document.querySelector(".nav-bar");
+            navBar.classList.toggle("active");
+        }
+    </script>
+</body>
+</html>

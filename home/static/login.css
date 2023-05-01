@@ -1,0 +1,167 @@
+ /* Import Google font - Poppins */
+ @import url('https://fonts.googleapis.com/css2?family=Abel&family=Alkatra&display=swap');
+ *{
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   font-family:'Abel',sans-serif;
+   font-family: 'Alkatra',cursive; 
+ }
+ body{
+   min-height: 100vh;
+   width: 100%;
+   background: linear-gradient(135deg,#71b7e6,#9b59b6);
+ }
+ header{
+  width: 100%;
+  height: 80px;
+  background: #111011;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding:0 100px;
+}
+.logo{
+  font-size: 28px;
+  font-weight: bold;
+  color:#fefefe;
+}
+.ad{
+  display:none;
+}
+.nav-bar ul{
+  display: flex;
+}
+.nav-bar ul a{
+  display:block;
+  color:#fefefe;
+  font-size:20px;
+  padding: 10px 25px;
+  border-radius: 50px;
+  transition: 0.2s;
+}
+.nav-bar ul li a:hover{
+  color:#111011;
+  background: #fefefe;
+}
+.nav-bar ul li a.active{
+  color:#111011;
+  background: #fefefe;
+} 
+.container{
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%,-50%);
+   max-width: 430px;
+   width: 100%;
+   background: #fff;
+   border-radius: 7px;
+   box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+ }
+.container .registration{
+   display: none;
+ }
+#check:checked ~ .registration{
+   display: block;
+ }
+#check:checked ~ .login{
+   display: none;
+ }
+#check{
+   display: none;
+ }
+.container .form{
+   padding: 2rem;
+ }
+h2{
+   font-size: 2rem;
+   font-weight: 500;
+   text-align: center;
+   margin-bottom: 1.5rem;
+}
+.form input{
+    height: 60px;
+    width: 100%;
+    padding: 0 15px;
+    font-size: 17px;
+    margin-bottom: 1.3rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    outline: none;
+  }
+.form input:focus{
+    box-shadow: 0 1px 0 rgba(0,0,0,0.2);
+  }
+.form a{
+   font-size: 16px;
+   color: #009579;
+   text-decoration: none;
+ }
+.form a:hover{
+   text-decoration: underline;
+ }
+.form input.button{
+   color: #fff;
+   background:  linear-gradient(135deg,#71b7e6,#9b59b6);;
+   font-size: 1.2rem;
+   font-weight: 500;
+   letter-spacing: 1px;
+   margin-top: 1.7rem;
+   cursor: pointer;
+   transition: 0.4s;
+ }
+.form input.button:hover{
+   background:  linear-gradient(-135deg,#71b7e6,#9b59b6);;
+ }
+.signup{
+   font-size: 17px;
+   text-align: center;
+ }
+.signup label{
+   color: #009579;
+   cursor: pointer;
+ }
+.signup label:hover{
+   text-decoration: underline;
+}
+@media only screen and (max-width:900px){
+  .ad{
+      display:block;
+      cursor:pointer;
+  }
+  .ad .line{
+      width:30px;
+      height:3px;
+      background: #fefefe;
+      margin:6px 0;
+  }
+  .nav-bar{
+      height:0px;
+      position: absolute;
+      top: 80px;
+      left:0;
+      right:0;
+      width: 100vw;
+      background: #111011;
+      transition: 0.5s;
+      overflow:hidden;
+  }
+  .nav-bar.active{
+      height:450px;
+  }
+  .nav-bar ul{
+      display:block;
+      width:fit-content;
+      margin:80px auto 0 auto;
+      text-align: center;
+      transition:0.5s;
+      opacity: 0;
+  }
+  .nav-bar.active ul{
+      opacity:1;
+  }
+  .nav-bar ul li a{
+      margin-bottom: 12px;
+  }
+}

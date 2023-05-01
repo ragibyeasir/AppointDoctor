@@ -1,0 +1,39 @@
+{% extends 'header.html' %}
+{% block home %}
+class="active"
+{% endblock home %}
+{% block message %}
+<link rel="stylesheet" href="static/respstyle.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+<!-- Default theme -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{% endblock message %}
+{% if doctor %}
+{% block logout %}<a href="/LogOut">Log Out</a>{% endblock logout %}
+{% endif %}
+{% block sidetittle %}
+<div class="title">
+    {{uname}} 
+</div>
+{% endblock sidetittle %}
+
+{% block body %}
+<div class="container">
+    <div class="item item1"></div>
+    <div class="item item2"><h2 align="center" style="color:darkcyan">Welcome</h2><p>A Good site to meet our best consultant. The communicate with you carefully. Our every consultant are from reknown 
+        institution. After every consult with them you can find description and prescription which is very helpful. After testing on a diagonastics, you can upload your report and 
+        our consultant reply you. 
+    </p></div>
+</div>
+
+<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+<script>
+    {% for flashmsg in messages %}
+        alertify.set('notifier','position', 'top-right');
+        alertify.success('{{flashmsg}}');
+    {% endfor %}			
+</script>
+
+{% endblock body %}

@@ -1,0 +1,26 @@
+.container{
+    margin-top: 80px;
+    border: solid grey;
+    height: 45vh;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+}
+.item{
+    background-color: red;
+    border: 2px solid black;
+    margin: 0.05px;
+    width: 122px;
+    height: 122px;
+} 
+.item3{
+    flex-grow: 4;
+}
+.item2{
+    background-color: white;
+    flex-grow:2;
+}
+.text-gray{
+    color:#b4b4b4;
+}

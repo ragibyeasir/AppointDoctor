@@ -1,0 +1,225 @@
+@import url('https://fonts.googleapis.com/css2?family=Abel&family=Alkatra&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:'Abel',sans-serif;
+    font-family: 'Alkatra',cursive;   
+}
+/* body{
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    background: linear-gradient(135deg,#71b7e6,#9b59b6);
+} */
+header{
+    width: 100%;
+    height: 80px;
+    background: #111011;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding:0 100px;
+}
+.logo{
+    font-size: 28px;
+    font-weight: bold;
+    color:#fefefe;
+}
+.ad{
+    display:none;
+}
+.nav-bar ul{
+    display: flex;
+}
+.nav-bar ul a{
+    display:block;
+    color:#fefefe;
+    font-size:20px;
+    padding: 10px 25px;
+    border-radius: 50px;
+    transition: 0.2s;
+}
+.nav-bar ul li a:hover{
+    color:#111011;
+    background: #fefefe;
+}
+.nav-bar ul li a.active{
+    color:#111011;
+    background: #fefefe;
+}
+.container{
+    max-width: 700px;
+    width: 100%;
+    background: #fff;
+    padding: 25px 30px;
+    border-radius: 5px;
+}
+.container .tittle{
+    font-size: 25px;
+    font-weight: 500;
+    position: relative;
+
+}
+.container .tittle::before{
+    content:'';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 3px;
+    width: 30px;
+    background: linear-gradient(135deg,#71b7e6,#9b59b6);
+}
+.container form .user-details{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 20px 0 12px 0;
+}
+form .user-details .input-box{
+    margin-bottom: 15px;
+    width: calc(100% / 2 - 20px);
+}
+.user-details .input-box .details{
+    display: block;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+.user-details .input-box input{
+    height: 45px;
+    width: 100%;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding-left: 15px;
+    font-size: 16px;
+    border-bottom-width: 2px;
+    transition: all 0.3s ease;
+}
+.user-details .input-box input:focus,.user-details .input-box:valid{
+    border-color: #9b59b6;
+}
+form .gender-details .gender-tittle{
+    font-size: 20px;
+    font-weight: 500;
+}
+from .gender-details .category{
+    display: flex;
+    width: 80%;
+    margin: 14px 0;
+    justify-content: space-between;
+}
+.gender-details .category label{
+    display: flex;
+    align-items: center;
+}
+.gender-details .category .dot{
+    height: 18px;
+    width: 18px;
+    background: #d9d9d9;
+    border-radius: 50%;
+    margin-right: 10px;
+    border: 5px solid transparent;
+    transition: all 0.3s ease;
+
+}
+#dot-1:checked ~ .category label .one,
+#dot-2:checked ~ .category label .two{
+    border-color: #d9d9d9;
+    background: #9b59b6;
+}
+form input[type="radio"]{
+    display: none;
+}
+form .button{
+    height: 45px;
+    margin: 45px 0;
+}
+form .button input{
+    height: 100%;
+    width: 100%;
+    outline: none;
+    color: #fff;
+    border: none;
+    font-size: 18px;
+    font-weight: 500;
+    border-radius: 5px;
+    letter-spacing: 1px;
+    background: linear-gradient(135deg,#71b7e6,#9b59b6);
+}
+form .button input:hover{
+    background: linear-gradient(-135deg,#71b7e6,#9b59b6);
+}
+.LogIn{
+    color: #009579;
+}
+@media  (max-width: 584px){
+    .container{
+        max-width: 100%;
+    }
+    form .user-details .input-box{
+        margin-bottom: 15px;
+        width: 100%;
+    }
+    .container form .user-details{
+        max-height: 300px;
+        overflow-y: scroll;
+    }
+    .user-details::-webkit-scrollbar{
+        width:0;
+    }
+}
+@media only screen and (max-width:1320px){
+    header{
+        padding: 0 50px;
+    }
+}
+@media only screen and (max-width:1100px){
+    .header{
+        padding:0 30px;
+    }
+}
+@media only screen and (max-width:900px){
+    .ad{
+        display:block;
+        cursor:pointer;
+    }
+    .ad .line{
+        width:30px;
+        height:3px;
+        background: #fefefe;
+        margin:6px 0;
+    }
+    .nav-bar{
+        height:0px;
+        position: absolute;
+        top: 80px;
+        left:0;
+        right:0;
+        width: 100vw;
+        background: #111011;
+        transition: 0.5s;
+        overflow:hidden;
+    }
+    .nav-bar.active{
+        height:450px;
+    }
+    .nav-bar ul{
+        display:block;
+        width:fit-content;
+        margin:80px auto 0 auto;
+        text-align: center;
+        transition:0.5s;
+        opacity: 0;
+    }
+    .nav-bar.active ul{
+        opacity:1;
+    }
+    .nav-bar ul li a{
+        margin-bottom: 12px;
+    }
+}
+
+

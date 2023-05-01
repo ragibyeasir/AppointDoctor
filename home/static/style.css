@@ -1,0 +1,12 @@
+.fcontainer{
+    margin-top: 80 px ;
+    border: 2px solid rgb(57, 15, 173);
+    height: 800 px;
+}
+.item{
+    background-color: aqua;
+    border: 2px solid grey;
+    margin: 12px;
+    height: 122 px;
+    width: 122 px;
+}

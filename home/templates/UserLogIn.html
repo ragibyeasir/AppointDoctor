@@ -1,0 +1,83 @@
+{% extends 'header.html' %}
+{% block tittle %}Log In{% endblock tittle %}
+{% block style %}href="/static/hlIn.css"{% endblock style %}
+{% block login %}class="active"{% endblock login %}
+{% block body %}
+<div class="slide-container">
+    <div class="slide-content">
+        <div class="card-wrapper">
+            <div class="card">
+                <div class="image-content">
+                    <span class="overlay"></span>
+                    <div class="card-image">
+                        <img src="/static/images/Doctor.jpg" alt="" class="card-img">
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h2 class="name">Are You A Doctor</h2>
+                    <p class="description">If You Are A Doctor Then Click Here</p>
+                    <button class="button"><a href="/doctor_re">Registration</a></button>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-content">
+                    <span class="overlay"></span>
+                    <div class="card-image">
+                        <img src="/static/images/alexander-grey-tKnqkvFcmyM-unsplash.jpg" alt="loading" class="card-img">
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h2 class="name">Are You A Patient</h2>
+                    <p class="description">If You Are A Patient Then Click Here</p>
+                    <button class="button"><a href="/patient_re">Registration</a></button>
+                </div>
+            </div>                
+        </div>
+    </div>
+</div>
+{% endblock body %}
+{% comment %} <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Log In</title>
+    <link rel="stylesheet" href="/static/hlIn.css" >
+</head>
+<body>
+    {% include 'header.html' %}
+    <!-- <div class="slide-container">
+        <div class="slide-content">
+            <div class="card-wrapper">
+                <div class="card">
+                    <div class="image-content">
+                        <span class="overlay"></span>
+                        <div class="card-image">
+                            <img src="/static/images/Doctor.jpg" alt="" class="card-img">
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h2 class="name">Are You A Doctor</h2>
+                        <p class="description">If You Are A Doctor Then Click Here</p>
+                        <button class="button"><a href="/doctor_login">Log In</a></button>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="image-content">
+                        <span class="overlay"></span>
+                        <div class="card-image">
+                            <img src="/static/images/alexander-grey-tKnqkvFcmyM-unsplash.jpg" alt="loading" class="card-img">
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h2 class="name">Are You A Patient</h2>
+                        <p class="description">If You Are A Patient Then Click Here</p>
+                        <button class="button"><a href="/patient_login">Log In</a></button>
+                    </div>
+                </div>                
+            </div>
+        </div>
+    </div> -->
+</body>
+</html> {% endcomment %}

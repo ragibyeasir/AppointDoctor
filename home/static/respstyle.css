@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Abel&family=Alkatra&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration:none;
+    font-family:'Abel',sans-serif;
+    font-family: 'Alkatra','cursive'; 
+    box-sizing: border-box;
+}
+.container
+{
+        margin-top: 80px;
+        border: solid grey;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        border: hidden;
+        opacity:0.5s;
+}
+.item{
+    /* background-color: #fefefe; */
+    border: 2px solid black;
+    margin: 0.05px;
+    width: 500px;
+    height: 500px;
+    border:hidden;
+}
+.item1{
+    background-image: url("/static/images/A Good Image.jpg");
+    background-repeat: no-repeat;
+    background-size: 500px 500px;
+    border-radius:50%;
+} 
+/* img{
+    border-radius: 50%;
+} */
+/* .item2{
+    
+    background-repeat: no-repeat;
+    background-size: 500px 500px;
+    
+} */
