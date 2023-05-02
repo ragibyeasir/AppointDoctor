@@ -24,6 +24,8 @@ urlpatterns = [
     path('', hv.home_page_view,name='home'),
     path('login/',hv.login_view,name='login'),
     path('Doctors/',hv.doctors,name='doctors'),
-    path('LogOut/',hv.logout_view,name='logout')
+    path('LogOut/',hv.logout_view,name='logout'),
+    path('Consult/',hv.consult,name='consult'),
+    
     
 ]

@@ -4,20 +4,12 @@ class="active"
 {% endblock home %}
 {% block message %}
 <link rel="stylesheet" href="static/respstyle.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
 <!-- Default theme -->
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 {% endblock message %}
-{% if doctor %}
-{% block logout %}<a href="/LogOut">Log Out</a>{% endblock logout %}
-{% endif %}
-{% block sidetittle %}
-<div class="title">
-    {{uname}} 
-</div>
-{% endblock sidetittle %}
 
 {% block body %}
 <div class="container">

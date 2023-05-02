@@ -9,7 +9,9 @@ def user_registration_view(request):
     return render(request,'UserLogIn.html')
 def home_page_view(request):
     username=request.user
-    doctor=Doctor.objects.filter(user=username).exists()
+    doctor=None
+    if request.user.is_authenticated:
+        doctor=Doctor.objects.filter(user=username).exists()
     context={
         'uname':username,
         'doctor': doctor
@@ -45,7 +47,11 @@ def doctor_registration(request):
             return redirect('dlogin')
     return render(request,'Registration.html')
 def doctors(request):
-    return render(request,'exp.html')
+    username=request.user
+    context={
+        'uname':username
+    }
+    return render(request,'exp.html',context)
 def patient_registration(request):
     if request.method=='POST':
         uname=request.POST.get('uname')
@@ -93,4 +99,16 @@ def login_view(request):
     return render(request,'animatedlogin.html')
 def logout_view(request):
     logout(request)
+    messages.success(request,'Successfully LogOut')
     return redirect('login')
+@login_required
+def consult(request):
+    username=request.user
+    doctor=None
+    if request.user.is_authenticated:
+        doctor=Doctor.objects.filter(user=username).exists()
+    context={
+        'uname':username,
+        'doctor': doctor
+    }
+    return render(request,'consult.html',context)

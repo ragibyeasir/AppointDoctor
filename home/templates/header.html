@@ -6,7 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block tittle %}Home{% endblock tittle %} </title>
-    <link rel="stylesheet" {% block style %}href="/static/header.css"{% endblock style %}>
+    <link rel="stylesheet" href="/static/header.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
     {% block message %}{% endblock message %}
 </head>
 <body>
@@ -23,7 +24,11 @@
                      <a href="/" {% block home %}{% endblock home %}> Home</a>
                 </li>
                 <li>
-                    {% block userauth  %}<a href="/Doctors" {% block doctor  %}{% endblock doctor %}>See Doctors</a>{% endblock userauth  %}     
+                    {% if not doctor %}
+                        <a href="/Doctors" {% block doctor  %}{% endblock doctor %}>See Doctors</a>
+                    {% else %}
+                        <a href="/Consult" {% block consult  %}{% endblock consult %}>Consult</a>
+                    {% endif %}
                 </li>
                 <li>
                     <a href="#">About Us</a>
@@ -32,12 +37,17 @@
                     <a href="#" >Contact</a>
                 </li>
                 <li> 
-                    {% block logut %}<a href="/login"  {% block login %}{% endblock login %}>Log In</a>{% endblock logut %}
+                    {% if user.is_authenticated %}
+                        <a href="/LogOut" >LogOut</a>
+                    {% else %}
+                        <a href="/login" >Log In</a>
+                    {% endif %}
                 </li>
             </ul>
         </nav>
     
     </header>
+    {% if user.is_authenticated %}
     <sidebar>
         <div class="wrapper">
             <input type="checkbox" id="btn" hidden>
@@ -46,12 +56,9 @@
             <i class="fas fa-times"></i>
             </label>
             <nav id="sidebar">
-                {% block sidetittle %}
                 <div class="title">
-                    Side Menu 
+                    {{uname}} 
                </div>
-                {% endblock sidetittle %}
-
                <ul class="list-items">
                   <li><a href="#"><i class="fas fa-home"></i>Home</a></li>
                   <li><a href="#"><i class="fas fa-sliders-h"></i>Consults</a></li>
@@ -60,6 +67,7 @@
             </nav>
          </div>
     </sidebar>
+    {% endif %}
     {% block body %}
 
     {% endblock body %}
