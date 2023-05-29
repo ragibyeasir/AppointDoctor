@@ -2,8 +2,10 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
 from doctors.models import *
+from doctors.forms import *
 # Create
 def doctor_registration(request):
+    submitted=False
     if request.method=='POST':
         full_name=request.POST['fullname']
         uname=request.POST.get('username')
@@ -15,7 +17,12 @@ def doctor_registration(request):
         prinfo=request.POST['occuption']
         pass1=request.POST.get('pass1')
         pass2=request.POST.get('pass2')
-        photo=request.POST.get('photo')
+        form=ImageForm(request.POST,request.FILES)
+        if form.is_valid():
+            img=form.save()
+        else:
+            if 'submitted' in request.GET:
+                submitted=True
         gender=request.POST.get('gender')
         if User.objects.filter(username=uname).exists() or User.objects.filter(email=email).exists():
             messages.error(request,'username or email is already Exist')
@@ -27,9 +34,11 @@ def doctor_registration(request):
             pdUser=User(username=uname,email=email,first_name=full_name)
             pdUser.set_password(pass1)
             pdUser.save()
-            doctor=Doctor(date_of_birth=dob,study=einfo,image=photo,experience=exp,phone_number=pnumber,
+            doctor=Doctor(date_of_birth=dob,study=einfo,dimage=img,experience=exp,phone_number=pnumber,
                           current_working=prinfo,gender=gender,user=pdUser)
             doctor.save()
             messages.success(request,'Dr '+uname+' Enjoy Our Service')
             return redirect('login')
-    return render(request,'Registration.html') 
+    else:
+        form=ImageForm()
+    return render(request,'Registration.html',{'forms': form}) 

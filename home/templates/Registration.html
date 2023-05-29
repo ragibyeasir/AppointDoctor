@@ -67,10 +67,11 @@
                     <span class="details">Confirm Password</span>
                     <input type="password" placeholder="Confirm Password" name='pass2' required>
                 </div>
-                <div class="input-box photo">
+                {% comment %} <div class="input-box photo">
                     <span class="details">Photo</span>
                     <input type="file" class="box" accept="image/jpg,image/jpeg,image/png" name='photo' required>
-                </div>
+                </div> {% endcomment %}
+                {{ forms.as_p }}
                 <div class="gender-details">
                     <input type="radio" name="gender" id="dot-1" value='M'>
                     <input type="radio" name="gender" id="dot-2" value='F'>

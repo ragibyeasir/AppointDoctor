@@ -12,29 +12,34 @@ class="active"
     <form action="#" method='POST'>
         {% csrf_token %}
         <div class="user-details">
+
+            {% if doctor is not None %}
             {% for d in doctor %}
+            <div class="img" align="right">
+                <img src="{{ d.dimage.image.url }}" alt="loading" height="100" width="100">
+            </div>
             <div class="input-box">
                 <span class="details">Full Name</span>
                 <input type="text" placeholder="Enter Your Name" name='fullname' value='{{user.first_name}}'>
             </div> 
             <div class="input-box">
                 <span class="details">Phone Number</span>
-                <input type="text" pattern="[0-9]{11}" placeholder="Phone Number" name='pnumber' value='{{d.phone_number}}'>
+                <input type="text" pattern="[0-9]{11}" placeholder="Phone Number" name='pnumber' value='{{d.phone_number}}' >
             </div>
             <div class="input-box">
                 <span class="details">Date Of Birth</span>
-                <input type="text" type="date" placeholder="dd/mm/yyyy" name=dob  value='{{d.date_of_birth}}'>
+                <input type="date" type="date" placeholder="dd/mm/yyyy" name=dob  value='{{ d.date_of_birth|date:'Y-m-d' }}'>
             </div>
                 <div class="input-box">
                     <span class="details">Education Information</span>
-                    <select placeholder="Education Information" name='einfo' value='{{d.doctor.study}}'>
+                    <select type=text placeholder="Education Information" name='study' value='{{d.study}}'>
                         <option>Select An Option</option>
-                        <option value='MBBS'>
+                        <option value='MBBS' {% if d.study == 'MBBS' %} selected {% endif %}>
                             MBBS 
-                        </option>
-                        <option>BDS</option>
-                        <option>MD</option>
-                        <option>FCPS</option>
+                        </option >
+                        <option value='BDS' {% if d.study == 'BDS' %} selected {% endif %} >BDS</option>
+                        <option value='MD' {% if d.study == 'MD' %} selected {% endif %}>MD</option>
+                        <option value='FCPS' {% if d.study == 'FCPS' %} selected {% endif %}>FCPS</option>
                     </select>
                 </div>
                 <div class="input-box">
@@ -55,20 +60,41 @@ class="active"
                 </div>
                 <div class="input-box">
                     <span class="details">nid</span>
-                    <input type="text" placeholder="Speciality" name='nid' value='{{d.nid}}'>
+                    <input type="text" placeholder="NID" name='nid' value='{{d.nid}}'>
                 </div>
                 <div class="input-box">
                     <span class="details">Decription</span>
                     <textarea name="Description" rows="8" cols="45" value="{{d.description}}" placeholder="Decription"></textarea>
                 </div>
-                <div class="input-box photo">
+                <!-- <div class="input-box photo">
                     <span class="details">Photo</span>
-                    <input type="file" class="box" accept="image/jpg,image/jpeg,image/png" name='photo'>
-                </div> 
+                    <input type="file" class="box" accept="image/jpg,image/jpeg,image/png" name='photo' value={{d.dimage.image.url}}>
+                </div>  -->
                 <div class="button">
                     <input type="submit" value="Save">
                 </div>
-                {% endfor %} 
+                {% endfor %}
+                {% endif %}
+                {% if patient is not None %}
+                {% for p in patient %}
+                <div class="input-box">
+                    <span class="details">Full Name</span>
+                    <input type="text" placeholder="Enter Your Name" name='fullname' value='{{user.first_name}}'>
+                </div> 
+                <div class="input-box">
+                    <span class="details">Occuption</span>
+                    <input type="text" placeholder="Occuption" name='nid' value='{{p.occupation}}'>
+                </div>
+                <div class="input-box">
+                    <span class="details">Phone Number</span>
+                    <input type="text" pattern="[0-9]{11}" placeholder="Phone Number" name='pnumber' value='{{p.phone_number}}' >
+                </div>
+                <div class="input-box">
+                    <span class="details">Date Of Birth</span>
+                    <input type="date" type="date" placeholder="dd/mm/yyyy" name=dob  value='{{ p.date_of_birth|date:'Y-m-d' }}'>
+                </div>
+                {% endfor %}
+                {% endif %} 
              </div>
 
         </form>
