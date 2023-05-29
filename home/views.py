@@ -64,8 +64,9 @@ def profile_view(request):
     is_doctor=None
     is_patient=None
     if request.user.is_authenticated:
-        is_doctor =Doctor.objects.filter(user=our_user).exists()
-        is_patient=Patient.objects.filter(user=our_user).exists()
+        is_doctor =Doctor.objects.filter(user=our_user).values()
+        is_patient=Patient.objects.filter(user=our_user).values()
+        print(is_doctor,is_patient)
         context={
             'doctor':is_doctor,
             'patient':is_patient
