@@ -17,72 +17,18 @@ def home_page_view(request):
         'doctor': doctor
     }
     return render(request,'responsivenavbar.html',context)
-def doctor_registration(request):
-    if request.method=='POST':
-        uname=request.POST.get('username')
-        email=request.POST.get('email')
-        pnumber=request.POST.get('pnumber')
-        dob=request.POST.get('dob')
-        einfo=request.POST.get('einfo')
-        exp=request.POST['expe']
-        prinfo=request.POST['occuption']
-        pass1=request.POST.get('pass1')
-        pass2=request.POST.get('pass2')
-        photo=request.POST['photo']
-        gender=request.POST.get('gender')
-        print(uname,email,pnumber,dob,einfo,exp,prinfo,pass1,pass2,photo,gender)
-        if User.objects.filter(username=uname).exists() or User.objects.filter(email=email).exists():
-            messages.error(request,'username or email is already Exist')
-            return redirect('dregistration') 
-        elif pass1!=pass2:
-            messages.error(request,'Password and Confirm Password is not correct')
-            return redirect('dregistration')  
-        else:
-            pdUser=User(username=uname,email=email,password=pass1)
-            pdUser.save()
-            doctor=Doctor(date_of_birth=dob,institution=einfo,image=photo,experience=exp,phone_number=pnumber,
-                          current_working=prinfo,gender=gender,user=pdUser)
-            doctor.save()
-            messages.success(request,'Dr '+uname+' Enjoy Our Service')
-            return redirect('dlogin')
-    return render(request,'Registration.html')
+def about_view(request):
+    return render(request,'about.html')
 def doctors(request):
     username=request.user
     context={
         'uname':username
     }
     return render(request,'exp.html',context)
-def patient_registration(request):
-    if request.method=='POST':
-        uname=request.POST.get('uname')
-        email=request.POST.get('email')
-        pnumber=request.POST.get('pnumber')
-        dob=request.POST.get('dob')
-        occuption=request.POST.get('occuption')
-        pass1=request.POST.get('pass1')
-        pass2=request.POST.get('pass2')
-        gender=request.POST.get('gender')
-        print(uname,email,pnumber,dob,pass1,pass2,gender)
-        print(request.POST)
-        if User.objects.filter(username=uname).exists() or User.objects.filter(email=email).exists():
-            messages.error(request,'username or email is already Exist')
-            return redirect('pregistration')
-        elif pass1!=pass2:
-            messages.error(request,'Password and Confirm Password is not correct')
-            return redirect('pregistration')        
-        else:
-            pdUser=User(username=uname,email=email,password=pass1)
-            pdUser.save()
-            patient=Patient(occutpion=occuption,phone_numer=pnumber,date_of_birth=dob,gender=gender,user=pdUser)
-            patient.save()
-            messages.success(request,uname+' Enjoy Our Service')               
-            return redirect('plogin')
-    return render(request,'userregistration.html')
 def login_view(request):
     if request.method=='POST':
         uname=request.POST['username']
         password=request.POST['password']
-        print(uname,password)
         user=authenticate(request,username=uname,password=password)
         if user is not None:
             login(request,user)
@@ -102,7 +48,7 @@ def logout_view(request):
     messages.success(request,'Successfully LogOut')
     return redirect('login')
 @login_required
-def consult(request):
+def consult(request):       
     username=request.user
     doctor=None
     if request.user.is_authenticated:
@@ -112,3 +58,46 @@ def consult(request):
         'doctor': doctor
     }
     return render(request,'consult.html',context)
+@login_required
+def profile_view(request):
+    our_user=request.user
+    is_doctor=None
+    is_patient=None
+    if request.user.is_authenticated:
+        is_doctor =Doctor.objects.filter(user=our_user).exists()
+        is_patient=Patient.objects.filter(user=our_user).exists()
+        context={
+            'doctor':is_doctor,
+            'patient':is_patient
+        }
+    return render(request,'profile.html',context)
+@login_required
+def password_change_view(request):
+    
+    if request.method=='POST':
+        username = request.user.username
+        current_password = request.POST['cpass']
+        print(type(username))
+        user = authenticate(username=username,password = current_password)
+
+        if user is not None:
+            
+            current_user = User.objects.get(username=username)
+            
+            password1 = request.POST['pass1']
+            password2 = request.POST['pass2']
+            
+            
+            if password1 == password2:
+                current_user.set_password(password1)
+                current_user.save()
+                messages.success(request,'Password Changed Successfully')  
+            else:
+                messages.error(request,"New Password and Confirm Password do not match.")
+        else:
+            messages.error(request,"Current Password does not match.")
+        
+    
+    return render(request, 'password_change.html')
+def doctor_profile(request):
+    return render(request,'docprofile.html')

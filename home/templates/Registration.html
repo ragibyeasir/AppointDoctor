@@ -16,20 +16,24 @@
     {% include 'header.html' %}
     <div class="container">
         <div class="tittle">Registration</div>
-        <form action="#" method='POST'>
+        <form action="#" method='POST' enctype="multipart/form-data">
             {% csrf_token %}
             <div class="user-details">
                 <div class="input-box">
                     <span class="details">Full Name</span>
-                    <input type="text" placeholder="Enter Your Name" name='username' required>
-                </div>
+                    <input type="text" placeholder="Enter Your Name" name='fullname' required>
+                </div>             
+                <div class="input-box">
+                    <span class="details">User Name</span>
+                    <input type="text" placeholder="Username" name='username' pattern="[a-z0-9.]{1,15}" required>
+                </div>                
                 <div class="input-box">
                     <span class="details">Email</span>
                     <input type="text" placeholder="Email" name='email' required>
                 </div>
                 <div class="input-box">
                     <span class="details">Phone Number</span>
-                    <input type="text" placeholder="Phone Number" name='pnumber' required>
+                    <input type="text" pattern="[0-9]{11}" placeholder="Phone Number" name='pnumber' required>
                 </div>
                 <div class="input-box">
                     <span class="details">Date Of Birth</span>
@@ -37,7 +41,15 @@
                 </div>
                 <div class="input-box">
                     <span class="details">Education Information</span>
-                    <input type="text" placeholder="Education Information" name='einfo' required>
+                    <select placeholder="Education Information" name='einfo' required>
+                        <option>Select An Option</option>
+                        <option value='MBBS'>
+                           MBBS 
+                        </option>
+                        <option>BDS</option>
+                        <option>MD</option>
+                        <option>FCPS</option>
+                    </select>
                 </div>
                 <div class="input-box">
                     <span class="details">Experience</span>

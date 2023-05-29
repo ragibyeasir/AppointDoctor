@@ -23,16 +23,20 @@
             <div class="user-details">
                 <div class="input-box">
                     <span class="details">Full Name</span>
-                    <input type="text" placeholder="Enter Your Name" name='uname' required>
+                    <input type="text" placeholder="Enter Your Name" name='fullname' required>
                 </div>
+                <div class="input-box">
+                    <span class="details">User Name</span>
+                    <input type="text" placeholder="Username" name='username' pattern="[a-z0-9.]{1,15}" required>
+                </div>                  
                 <div class="input-box">
                     <span class="details">Email</span>
                     <input type="email" name="email" placeholder="Email" required>
                 </div>
-                <div class="input-box">
-                    <span class="details">Phone Number</span>
-                    <input type="text" placeholder="Phone Number" name='pnumber' required>
-                </div>
+                    <div class="input-box">
+                        <span class="details">Phone Number</span>
+                        <input type="text" pattern="[0-9]{11}" placeholder="Phone Number" name='pnumber' required>
+                    </div>
                 <div class="input-box">
                     <span class="details">Date Of Birth</span>
                     <input type="date" placeholder="dd/mm/yyyy" name='dob' required>

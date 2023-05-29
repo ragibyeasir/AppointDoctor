@@ -1,0 +1,57 @@
+.container{
+    max-width: 700px;
+    width: 100%;
+    background: #fff;
+    padding: 25px 30px;
+    border-radius: 5px;
+}
+.container .tittle{
+    font-size: 25px;
+    font-weight: 500;
+    position: relative;
+
+}
+.container form .change-pass{
+    display: inline-block;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 20px 0 12px 0;
+}
+form .change-pass .input-box{
+    margin-bottom: 15px;
+    width: calc(100% / 2 - 20px);
+}
+.change-pass .input-box .details{
+    display: block;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+.change-pass .input-box input{
+    height: 45px;
+    width: 400px;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding-left: 15px;
+    font-size: 16px;
+    border-bottom-width: 2px;
+    transition: all 0.3s ease;
+}
+.user-details .input-box input:focus,.user-details .input-box:valid{
+    border-color: #9b59b6;
+}
+form .button input{
+    height: 50%;
+    width: 100%;
+    outline: none;
+    color: #fff;
+    border: none;
+    font-size: 18px;
+    font-weight: 500;
+    border-radius: 5px;
+    letter-spacing: 1px;
+    background: linear-gradient(135deg,#71b7e6,#9b59b6);
+}
+form .button input:hover{
+    background: linear-gradient(-135deg,#71b7e6,#9b59b6);
+}

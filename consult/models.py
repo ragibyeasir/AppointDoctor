@@ -4,8 +4,8 @@ from doctors.models import *
 from patient.models import *
 # Create your models here.
 class Consult(models.Model):
-    doctor=models.ForeignKey(Doctor,models.CASCADE,null=True)
-    patient=models.ForeignKey(Patient,models.CASCADE,null=True)
+    doctor=models.ForeignKey(Doctor,models.SET_NULL,null=True)
+    patient=models.ForeignKey(Patient,models.SET_NULL,null=True)
     time=models.DateTimeField()
     def __str__(self):
         return 'Consulting Dr '+str(self.doctor)+' and '+str(self.patient)

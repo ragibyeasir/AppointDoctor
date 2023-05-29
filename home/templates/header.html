@@ -31,7 +31,7 @@
                     {% endif %}
                 </li>
                 <li>
-                    <a href="#">About Us</a>
+                    <a href="/About"{% block about %}{% endblock about %}>  About Us</a>
                 </li>
                 <li>
                     <a href="#" >Contact</a>
@@ -60,9 +60,9 @@
                     {{uname}} 
                </div>
                <ul class="list-items">
-                  <li><a href="#"><i class="fas fa-home"></i>Home</a></li>
-                  <li><a href="#"><i class="fas fa-sliders-h"></i>Consults</a></li>
-                  <li><a href="#"><i class="fas fa-address-book"></i>Profile</a></li>
+                  <li><a href="/" {% block shome %}{% endblock shome %}><i class="fas fa-home"></i>Home</a></li>
+                  <li><a href="/Consult" {% block consult1 %}{% endblock consult1 %}><i class="fas fa-sliders-h"></i>Consults</a></li>
+                  <li><a href="/Profile" {% block profile %}{% endblock profile %}><i class="fas fa-address-book"></i>Profile</a></li>
                </ul>
             </nav>
          </div>

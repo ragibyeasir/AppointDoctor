@@ -1,0 +1,84 @@
+{% extends 'header.html' %}
+{% block tittle %}Profile{% endblock tittle %}
+{% block message %}
+<link rel="stylesheet" href="/static/profile_view.css">
+{% endblock message %}
+{% block profile %}
+class="active"
+{% endblock profile %}
+{% block body %}
+<div class="container">
+    <div class="tittle">Profile Info</div>
+    <form action="#" method='POST'>
+        {% csrf_token %}
+        <div class="user-details">
+            <div class="input-box">
+                <span class="details">Full Name</span>
+                <input type="text" placeholder="Enter Your Name" name='fullname' value={{user.first_name}}>
+            </div>             
+            <div class="input-box">
+                <span class="details">User Name</span>
+                <input type="text" placeholder="Username" name='username' pattern="[a-z0-9.]{1,15}">
+            </div>                
+            <div class="input-box">
+                <span class="details">Email</span>
+                <input type="text" placeholder="Email" name='email'>
+            </div>
+            <div class="input-box">
+                <span class="details">Phone Number</span>
+                <input type="text" pattern="[0-9]{11}" placeholder="Phone Number" name='pnumber' {% if not doctor %} value='{{patient.phone_number}}' {% else %} value='{{doctor.phone_number}}' {% endif %}>
+            </div>
+            <div class="input-box">
+                <span class="details">Date Of Birth</span>
+                <input type="date" placeholder="dd/mm/yyyy" name=dob  {% if not doctor %} value='{{patient.date_of_birth}}' {% else %} value='{{doctor.date_of_birth}}' {% endif %}>
+            </div>
+            {% if doctor %}
+                <div class="input-box">
+                    <span class="details">Education Information</span>
+                    <select placeholder="Education Information" name='einfo' value='{{doctor.study}}'>
+                        <option>Select An Option</option>
+                        <option value='MBBS'>
+                            MBBS 
+                        </option>
+                        <option>BDS</option>
+                        <option>MD</option>
+                        <option>FCPS</option>
+                    </select>
+                </div>
+                <div class="input-box">
+                    <span class="details">Experience</span>
+                    <input type="text" placeholder="Experience" name='expe' value='{{doctor.experience}}'>
+                </div>
+                <div class="input-box">
+                    <span class="details">Present Occuption Institution</span>
+                    <input type="text" placeholder="Occuption" name='occuption' value='{{doctor.current_working}}'>
+                </div>
+                <div class="input-box">
+                    <span class="details">Number Of Consultation</span>
+                    <input type="text" placeholder="Occuption" name='consult' value='{{doctor.total_consult}}'>
+                </div>
+                <div class="input-box">
+                    <span class="details">Decription</span>
+                    <input type="text" placeholder="Occuption" name='occuption' value='{{doctor.description}}'>
+                </div>
+                <div class="input-box">
+                    <span class="details">Speciality</span>
+                    <input type="text" placeholder="Occuption" name='speciality' value='{{doctor.category}}'>
+                </div>
+                <div class="input-box">
+                    <span class="details">nid</span>
+                    <input type="text" placeholder="Occuption" name='speciality' value='{{doctor.nid}}'>
+                </div>
+                <div class="input-box photo">
+                    <span class="details">Photo</span>
+                    <input type="file" class="box" accept="image/jpg,image/jpeg,image/png" name='photo'>
+                </div> 
+                <div class="button">
+                    <input type="submit" value="Save">
+                </div> 
+            {% endif %}
+             
+</div>
+<a href='/passwordchange'>Change Your Passeword</a>
+{% endblock body %}
+
