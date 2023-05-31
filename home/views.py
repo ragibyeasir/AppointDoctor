@@ -1,3 +1,6 @@
+# from email.message import EmailMessage
+# from readline import get_current_history_length
+# from tokenize import generate_tokens
 from django.shortcuts import redirect, render
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
@@ -5,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from patient.models import *
 from doctors.models import *
 from django.contrib import messages
+from doctors.forms import *
 def user_registration_view(request):
     return render(request,'UserLogIn.html')
 def home_page_view(request):
@@ -21,8 +25,10 @@ def about_view(request):
     return render(request,'about.html')
 def doctors(request):
     username=request.user
+    doctors=Doctor.objects.all()
     context={
-        'uname':username
+        'uname':username,
+        'doctors':doctors
     }
     return render(request,'exp.html',context)
 def login_view(request):
@@ -64,14 +70,50 @@ def profile_view(request):
     is_doctor=None
     is_patient=None
     if request.user.is_authenticated:
-        is_doctor =Doctor.objects.filter(user=our_user)
-        is_patient=Patient.objects.filter(user=our_user)
-        print(is_doctor.values(),is_patient.values())
+        doctor1 =Doctor.objects.filter(user=our_user)
+        patient1=Patient.objects.filter(user=our_user)
+        # print(is_doctor.values(),is_patient.values())
+
+        print(our_user.first_name)        
         context={
-            'doctor':is_doctor,
-            'patient':is_patient
+            'doctor':doctor1,
+            'patient':patient1,
         }
-    return render(request,'profile.html',context)
+        is_doctor=Doctor.objects.filter(user=our_user).exists()
+        is_patient=Patient.objects.filter(user=our_user).exists()
+        if is_doctor:
+            if request.method=='POST':
+                fullname=request.POST['fullname']
+                spaciality=request.POST.get('speciality',False)
+                pnumber=request.POST.get('pnumber')
+                dob=request.POST.get('dob')
+                study=request.POST.get('study',False)
+                exp=request.POST.get('expe',False)
+                occuption=request.POST.get('occuption')
+                nid=request.POST.get('nid',False)
+                description=request.POST.get('description',False)
+                form=ImageForm(request.POST,request.FILES)
+                if form.is_valid():
+                    img=form.save()
+                context['form']=form
+                category=Category(category=spaciality)
+                category.save()
+                doctor=Doctor.objects.filter(user=our_user)
+                doctor.update(date_of_birth=dob,study=study,experience=exp,phone_number=pnumber,
+                current_working=occuption,nid=nid,category=category,description=description)
+                messages.success(request,'Dr'+fullname+'\n Your Information Successfully Updated ')
+                return redirect('profile')
+        if is_patient:
+            if request.method=='POST':
+                fullname=request.POST.get('fullname')
+                pnumber=request.POST.get('pnumber')
+                dob=request.POST.get('dob')
+                occuption=request.POST.get('occuption')
+                patient=Patient.objects.filter(user=our_user)
+                patient.update(occupation=occuption,phone_number=pnumber,date_of_birth=dob)
+                messages.success(request,fullname+'\n Your Information Successfully Updated ')
+                return redirect('profile')
+    return render(request,'profile.html',context)       
 @login_required
 def password_change_view(request):
     

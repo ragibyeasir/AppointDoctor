@@ -55,11 +55,11 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'pythonProject.urls'
-
+#'DIRS': [BASE_DIR,"templates"]
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR,"templates"],
+        'DIRS':[r'C:\Users\mehed\Documents\Python\Django\1st Django\home\templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -133,3 +133,11 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR,'static'),
 )
 MEDIA_ROOT=os.path.join(BASE_DIR,'media/')
+#SMTP config
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER="20201010@uap-bd.edu"
+EMAIL_HOST_PASSWORD="pialeduap"

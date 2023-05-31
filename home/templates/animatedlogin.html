@@ -42,12 +42,14 @@
             	   </div>
             	</div>
             	<a href="/user_registration">Register</a>
+				<a href="/forget-password/">Forgot Password</a> 
+				
             	<input type="submit" class="btn" value="Login">
             </form>
         </div>
     </div>
-    <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
 	<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+	<script src="/static/js/main.js"></script>
 	<script>
 		{% for flashmsg in messages %}
 			alertify.set('notifier','position', 'top-right');

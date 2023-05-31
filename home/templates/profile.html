@@ -2,6 +2,9 @@
 {% block tittle %}Profile{% endblock tittle %}
 {% block message %}
 <link rel="stylesheet" href="/static/profile_view.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+<!-- Default theme -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
 {% endblock message %}
 {% block profile %}
 class="active"
@@ -9,7 +12,7 @@ class="active"
 {% block body %}
 <div class="container">
     <div class="tittle">Profile Info</div>
-    <form action="#" method='POST'>
+    <form action="#" method='POST' enctype="multipart/form-data">
         {% csrf_token %}
         <div class="user-details">
 
@@ -28,7 +31,7 @@ class="active"
             </div>
             <div class="input-box">
                 <span class="details">Date Of Birth</span>
-                <input type="date" type="date" placeholder="dd/mm/yyyy" name=dob  value='{{ d.date_of_birth|date:'Y-m-d' }}'>
+                <input type="date" type="date" placeholder="dd/mm/yyyy" name='dob'  value='{{ d.date_of_birth|date:'Y-m-d' }}'>
             </div>
                 <div class="input-box">
                     <span class="details">Education Information</span>
@@ -61,18 +64,18 @@ class="active"
                 <div class="input-box">
                     <span class="details">nid</span>
                     <input type="text" placeholder="NID" name='nid' value='{{d.nid}}'>
-                </div>
+                </div><br>
                 <div class="input-box">
-                    <span class="details">Decription</span>
-                    <textarea name="Description" rows="8" cols="45" value="{{d.description}}" placeholder="Decription"></textarea>
+                    <span class="details">Description</span>
+
+                    <textarea name="description" rows="8" cols="45" placeholder="Decription">{{d.description}}</textarea>
                 </div>
-                <!-- <div class="input-box photo">
+                {% comment %} <div class="input-box photo">
                     <span class="details">Photo</span>
                     <input type="file" class="box" accept="image/jpg,image/jpeg,image/png" name='photo' value={{d.dimage.image.url}}>
-                </div>  -->
-                <div class="button">
-                    <input type="submit" value="Save">
-                </div>
+                </div>  {% endcomment %}
+                {{ forms.as_p }}
+
                 {% endfor %}
                 {% endif %}
                 {% if patient is not None %}
@@ -83,7 +86,7 @@ class="active"
                 </div> 
                 <div class="input-box">
                     <span class="details">Occuption</span>
-                    <input type="text" placeholder="Occuption" name='nid' value='{{p.occupation}}'>
+                    <input type="text" placeholder="Occuption" name='occuption' value='{{p.occupation}}'>
                 </div>
                 <div class="input-box">
                     <span class="details">Phone Number</span>
@@ -91,15 +94,23 @@ class="active"
                 </div>
                 <div class="input-box">
                     <span class="details">Date Of Birth</span>
-                    <input type="date" type="date" placeholder="dd/mm/yyyy" name=dob  value='{{ p.date_of_birth|date:'Y-m-d' }}'>
+                    <input type="date" type="date" placeholder="dd/mm/yyyy" name='dob'  value='{{ p.date_of_birth|date:'Y-m-d' }}'>
                 </div>
                 {% endfor %}
-                {% endif %} 
+                {% endif %} <br>
+                <div class="button">
+                    <input type="submit" value="Save">
+                </div>
              </div>
 
         </form>
 </div>
 <a href='/passwordchange'>Change Your Passeword</a>
-<p>{{doctor.experience}}</p>
+<script>
+        {% for flashmsg in messages %}
+            alertify.set('notifier','position', 'top-right');
+            alertify.success('{{flashmsg}}');
+        {% endfor %}	
+</script>    
 {% endblock body %}
 

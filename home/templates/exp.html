@@ -7,104 +7,22 @@
 {% block doctor %}class="active"{% endblock doctor %}
 {% block body %}
 <div class="container">
+  {% for d in doctors %}
   <div class="profile-card">
     <div class="image">
-      <img src="/static/images/usman-yousaf-PVjfLss3b-c-unsplash.jpg" alt="" class="profile-img" />
+      <img src="{{ d.dimage.image.url }}" alt="" class="profile-img" />
     </div>
     <div class="text-data">
-      <span class="name">Md Mehedy Hasan</span>
-      <span class="job">MBBS</span>
-      <span class="category">General Physician</span>
+      <span class="name">{{d.user.first_name}}</span>
+      <span class="job">{{d.study}}</span>
+      <span class="category">{{d.category.category}}</span>
     </div>
     <div class="buttons">
-      <button class="button">View More</button>
+      <button class="button" onclick={% url 'viewprofile' d.user.username %}>View More</button>
       <button class="button">Take Consult</button>
     </div>
   </div>
-  <div class="profile-card">
-    <div class="image">
-      <img src="/static/images/bruno-rodrigues-PZ041PgKsFE-unsplash.jpg" alt="" class="profile-img" />
-    </div>
-    <div class="text-data">
-      <span class="name">Md Mehedy Hasan</span>
-      <span class="job">MBBS</span>
-      <span class="category">Child Specialist</span>
-    </div>
-    <div class="buttons">
-      <button class="button">View More</button>
-      <button class="button">Take Consult</button>
-    </div>
-  </div>
-  <div class="profile-card">
-    <div class="image">
-      <img src="/static/images/dalton-ngangi-ZCztndOWdjs-unsplash.jpg" alt="" class="profile-img" />
-    </div>
-    <div class="text-data">
-      <span class="name">Md Mehedy Hasan</span>
-      <span class="job">MBBS</span>
-      <span class="category">Orthopadic</span>
-    </div>
-    <div class="buttons">
-      <button class="button">View More</button>
-      <button class="button">Take Consult</button>
-    </div>
-  </div>
-  <div class="profile-card">
-    <div class="image">
-      <img src="/static/images/Doctor.jpg" alt="" class="profile-img" />
-    </div>
-    <div class="text-data">
-      <span class="name">Md Mehedy Hasan</span>
-      <span class="job">MBBS</span>
-      <span class="category">Cardiologist</span>
-    </div>
-    <div class="buttons">
-      <button class="button">View More</button>
-      <button class="button">Take Consult</button>
-    </div>
-  </div>
-  <div class="profile-card">
-    <div class="image">
-      <img src="/static/images/dr-josiah-sarpong-6En5Z5ZhNj8-unsplash.jpg" alt="" class="profile-img" />
-    </div>
-    <div class="text-data">
-      <span class="name">Md Mehedy Hasan</span>
-      <span class="job">MBBS</span>
-      <span class="category">Gynocologist</span>
-    </div>
-    <div class="buttons">
-      <button class="button">View More</button>
-      <button class="button">Take Consult</button>
-    </div>
-  </div>
-  <div class="profile-card">
-    <div class="image">
-      <img src="/static/images/humberto-chavez-FVh_yqLR9eA-unsplash.jpg" alt="" class="profile-img" />
-    </div>
-    <div class="text-data">
-      <span class="name">Ms Hena </span>
-      <span class="job">MBBS</span>
-      <span class="category">General Physician</span>
-    </div>
-    <div class="buttons">
-      <button class="button">View More</button>
-      <button class="button">Take Consult</button>
-    </div>
-  </div>
-  <div class="profile-card">
-    <div class="image">
-      <img src="/static/images/usman-yousaf-PVjfLss3b-c-unsplash.jpg" alt="" class="profile-img" />
-    </div>
-    <div class="text-data">
-      <span class="name">Md Mehedy Hasan</span>
-      <span class="job">MBBS</span>
-      <span class="category">Medicin</span>
-    </div>
-    <div class="buttons">
-      <button class="button">View More</button>
-      <button class="button">Take Consult</button>
-    </div>
-  </div>
+  {% endfor %}
 </div>
 {% endblock body %}
 {% comment %} <div class="container">
