@@ -39,7 +39,7 @@ urlpatterns = [
     # path(r'^',include('django.contrib.auth.urls')),
     path('forget-password/' , dv.ForgetPassword , name="forget_password"),
     path('change-password/<token>/' , dv.ChangePassword , name="change_password"),
-    path('doctor_info/<str:username>',dv.view_profile,name='viewprofile'),
+    path('doctor_info/<int:id>',dv.view_profile,name='viewprofile'),
     #forgot_password
     # path('password-reset/',auth_views.PasswordResetView.as_view(),name='password_reset'), #template_name='password_reset_form.html',form_class=UserPasswordResetForm
     # path('password_reset/done/',auth_views.PasswordResetDoneView.as_view(),name='password_reset_done'), 

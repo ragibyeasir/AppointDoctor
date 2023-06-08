@@ -109,12 +109,13 @@ def ForgetPassword(request):
     except Exception as e:
         print(e)
     return render(request , 'forget-password.html')
-def view_profile(request,username):
+def view_profile(request,id):
     user=request.user
-    doctor=Doctor.objects.filter(user=username)
-    context={
-        'doctor':doctor
-    }
+    doctor=Doctor.objects.get(user=id)
 
-    return render(request,'doctor_profile.html',context)
+    print(doctor)
+    return render(request,'doctor_profile.html',{
+        'doctor':doctor,
+        'username':user
+    })
     

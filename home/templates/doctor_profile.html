@@ -7,11 +7,10 @@
     <div class="container py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col col-lg-9 col-xl-7">
-          {% for d  in doctor %}
           <div class="card">
             <div class="rounded-top text-white d-flex flex-row" style="background-color: #000; height:200px;">
               <div class="ms-4 mt-5 d-flex flex-column" style="width: 150px;">
-                <img src="{{ d.dimage.image.url }}" alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2"
+                <img src="{{ doctor.dimage.image.url }}" alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2"
                   style="width: 150px; z-index: 1">
                 <button type="button" class="btn btn-outline-dark" data-mdb-ripple-color="dark"
                   style="z-index: 1;">
@@ -19,8 +18,8 @@
                 </button>
               </div>
               <div class="ms-3" style="margin-top: 130px;">
-                <h5>{{d.user.first_name}} </h5>
-                <p> {{d.study}} </p>
+                <h5>{{doctor.user.first_name}} </h5>
+                <p> {{doctor.study}} </p>
               </div>
             </div>
             <div class="p-4 text-black" style="background-color: #f8f9fa;">
@@ -44,8 +43,8 @@
                 <p class="lead fw-normal mb-1">About</p>
                 <div class="p-4" style="background-color: #f8f9fa;">
                   <textarea class="font-italic mb-1" rows="8" cols="45" placeholder="Decription">{{d.description}}</p>
-                  <p class="font-italic mb-1">{{d.current_working}}</p>
-                  <p class="font-italic mb-0">{{d.total_consult}}</p>
+                  <p class="font-italic mb-1">{{doctor.current_working}}</p>
+                  <p class="font-italic mb-0">{{doctor.total_consult}}</p>
                 </div>
               </div>
               <div class="d-flex justify-content-between align-items-center mb-4">
@@ -80,7 +79,6 @@
               </div>
             </div>
           </div>
-          {% endfor %}
         </div>
       </div>
     </div>
