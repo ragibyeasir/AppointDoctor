@@ -12,8 +12,10 @@ def ChangePassword(request , token):
     
     
     try:
-        profile_obj = Profile.objects.filter(forget_password_token = token).first()
-        context = {'username' : profile_obj.user.username}
+        profile_obj = Profile.objects.filter(forgot_password_token = token).first()
+        print(token)
+        # print(profile_obj.user.id,profile_obj.forgot_password_tok)
+        context = {'user_id' : profile_obj.user.id}
         
         if request.method == 'POST':
             new_password = request.POST.get('new_password')
@@ -28,9 +30,9 @@ def ChangePassword(request , token):
             if  new_password != confirm_password:
                 messages.success(request, 'both should  be equal.')
                 return redirect(f'/change-password/{token}/')
-                         
+                            
             
-            user_obj = User.objects.filter(id = user_id)
+            user_obj = User.objects.get(id= user_id)
             user_obj.set_password(new_password)
             user_obj.save()
             return redirect('login')
@@ -94,12 +96,18 @@ def ForgetPassword(request):
                 return redirect('/forget-password/')
             
             user_obj = User.objects.get(username = username)
-            print(user_obj)
+            print(user_obj.username, user_obj.first_name)
             token = str(uuid.uuid4())
+            profile_obj=Profile.objects.filter(user=user_obj)
+            if profile_obj.exists():
+                profile_obj=Profile.objects.get(user=user_obj)
+            else:
+                profile_obj=Profile(user=user_obj)
             # profile_obj=Profile.objects.get(user=user_obj)
-            profile_obj= Profile(user=user_obj,forgot_password_token = token)
+            profile_obj.forgot_password_token=token
+            
             profile_obj.save()
-            print(profile_obj)
+            
             send_forget_password_mail(user_obj.email , token)
             messages.success(request, 'An email is sent.')
             return redirect('/forget-password/')

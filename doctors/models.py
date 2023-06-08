@@ -40,6 +40,6 @@ class Profile(models.Model):
     forgot_password_token=models.CharField(max_length=110)
     created_at=models.DateTimeField(auto_now_add=True)
     def __str__(self):
-        return str(self.user)
+        return self.forgot_password_token
 
 
