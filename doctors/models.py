@@ -2,6 +2,7 @@ from django.db import models
 from django.db.models.signals import *
 from django.contrib.auth.models import User
 # Create your models here.
+#models file
 GENDER=[
     ('M','Male'),
     ('F','Female')
@@ -14,7 +15,7 @@ EINFO=[
 ]
 class Category(models.Model):
     category=models.CharField(max_length=150)
-    def __str__(self):
+    def __str__(self): #return value
         return self.category
 class Image(models.Model):
     image=models.ImageField(null=True,blank=True,upload_to='doctorprofile/')
